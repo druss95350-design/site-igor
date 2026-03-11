@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>À propos — Corse Pro Services</title>
+  <meta name="description" content="Découvrez l'histoire d'Igor, artisan indépendant en Corse, ses valeurs et son engagement pour un travail soigné et honnête.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__container">
+      <a href="index.html" class="navbar__logo">
+        Corse Pro Services
+      </a>
+      <nav class="navbar__nav" id="navMenu" aria-label="Navigation principale">
+        <a href="index.html"        class="navbar__link">Accueil</a>
+        <a href="realisations.html" class="navbar__link">Mes réalisations</a>
+        <a href="apropos.html"      class="navbar__link">À propos</a>
+        <a href="actualites.html"   class="navbar__link">Actualités</a>
+        <button class="btn btn--accent navbar__cta" onclick="openOverlay()">
+          Devis gratuit
+        </button>
+      </nav>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- EN-TÊTE DE PAGE -->
+  <div class="page-header">
+    <div class="container">
+      <h1>À propos de moi</h1>
+      <p>L'homme derrière Corse Pro Services — mon histoire, mes valeurs, ma façon de travailler.</p>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ======================================================
+         PRÉSENTATION PERSONNELLE
+         ====================================================== -->
+    <section class="section">
+      <div class="container">
+        <div class="about-full__inner">
+          <div class="about-full__text">
+            <h2>Un artisan né et formé en Corse</h2>
+            <p>
+              Je m'appelle Igor. Je suis né à Ajaccio il y a quarante ans, dans une famille
+              où l'on apprenait à faire les choses bien du premier coup. Mon père était maçon,
+              ma mère tenait la maison avec une rigueur que j'admire encore aujourd'hui.
+              C'est peut-être là qu'est née ma conception du travail bien fait.
+            </p>
+            <p>
+              Après un CAP en maintenance des bâtiments, j'ai travaillé pendant plusieurs
+              années pour une entreprise de nettoyage industriel sur le continent. C'est là
+              que j'ai découvert les techniques de nettoyage à la vapeur — une méthode qui
+              m'a immédiatement convaincu par son efficacité et son respect de l'environnement.
+              Pas de produits chimiques agressifs, une action mécanique puissante, des résultats
+              spectaculaires sur tous types de surfaces.
+            </p>
+            <p>
+              En 2010, j'ai décidé de rentrer en Corse. L'île me manquait. Ses paysages,
+              ses gens, son rythme. J'ai créé Corse Pro Services avec une idée simple :
+              proposer des prestations de qualité, réalisées sérieusement, à des particuliers
+              et des professionnels qui méritent mieux que les solutions bâclées.
+            </p>
+
+            <blockquote class="about-full__quote">
+              "Je ne suis pas une entreprise. Je suis un artisan. Quand je me déplace
+              chez vous, c'est moi qui travaille — pas un employé que je n'aurais pas
+              formé moi-même. C'est cette promesse que je tiens depuis quinze ans."
+            </blockquote>
+
+            <h2>Une spécialisation qui fait la différence</h2>
+            <p>
+              Au fil des années, j'ai développé trois axes de spécialisation complémentaires.
+              Le nettoyage à la vapeur est au cœur de tout ce que je fais : façades, toitures,
+              allées, terrasses — la vapeur traite en profondeur sans agresser les matériaux.
+            </p>
+            <p>
+              L'entretien de climatisation à la vapeur est devenu une de mes prestations les
+              plus demandées. En Corse, les climatiseurs tournent à plein régime l'été. Un
+              appareil mal entretenu consomme jusqu'à 30 % d'énergie en plus et disperse des
+              bactéries dans l'air. Mon passage annuel vous garantit un appareil propre,
+              performant et sain.
+            </p>
+            <p>
+              Enfin, les travaux acrobatiques en hauteur me permettent d'intervenir là où
+              les autres ne vont pas. Formé aux techniques de cordage et titulaire des
+              certifications nécessaires, j'interviens sur des toitures à forte pente,
+              des clochers, des falaises ou tout bâtiment dont l'accès est rendu impossible
+              par le terrain.
+            </p>
+
+            <div class="about-stats">
+              <div class="about-stat">
+                <span class="about-stat__num">15+</span>
+                <span class="about-stat__label">ans d'expérience</span>
+              </div>
+              <div class="about-stat">
+                <span class="about-stat__num">300+</span>
+                <span class="about-stat__label">chantiers réalisés</span>
+              </div>
+              <div class="about-stat">
+                <span class="about-stat__num">4,8</span>
+                <span class="about-stat__label">/ 5 sur Google</span>
+              </div>
+              <div class="about-stat">
+                <span class="about-stat__num">100%</span>
+                <span class="about-stat__label">artisan solo certifié</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-full__aside">
+            <div class="about-full__photo">
+              <img src="https://picsum.photos/seed/igor-portrait/600/700"
+                   alt="Igor, artisan Corse Pro Services" loading="lazy">
+            </div>
+            <div style="background:var(--bg-light); border-radius:var(--radius); padding:22px;">
+              <h3 style="font-size:1rem; margin-bottom:14px;">Certifications & formations</h3>
+              <ul style="display:flex; flex-direction:column; gap:10px;">
+                <li style="display:flex; gap:10px; font-size:0.88rem; color:var(--text-muted);">
+                  <span>✅</span>
+                  <span>Travaux en hauteur par cordage (CQP)</span>
+                </li>
+                <li style="display:flex; gap:10px; font-size:0.88rem; color:var(--text-muted);">
+                  <span>✅</span>
+                  <span>Entretien de systèmes de climatisation</span>
+                </li>
+                <li style="display:flex; gap:10px; font-size:0.88rem; color:var(--text-muted);">
+                  <span>✅</span>
+                  <span>Fluides frigorigènes — attestation d'aptitude</span>
+                </li>
+                <li style="display:flex; gap:10px; font-size:0.88rem; color:var(--text-muted);">
+                  <span>✅</span>
+                  <span>SIRET enregistré — artisan indépendant</span>
+                </li>
+                <li style="display:flex; gap:10px; font-size:0.88rem; color:var(--text-muted);">
+                  <span>✅</span>
+                  <span>Assurance décennale et RC Pro</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         MES VALEURS
+         ====================================================== -->
+    <section class="section section--light">
+      <div class="container">
+        <div class="section__header">
+          <h2>Ce en quoi je crois</h2>
+          <p>Ces valeurs guident chaque intervention, chaque devis, chaque échange.</p>
+        </div>
+        <div class="values-grid">
+
+          <div class="value-card">
+            <div class="value-card__icon">🤝</div>
+            <h3>Honnêteté</h3>
+            <p>
+              Je vous dis ce que je vois, ce qui est faisable, et ce que ça coûtera.
+              Sans exagérer le travail ni minimiser les contraintes. Un devis signé
+              est un engagement tenu.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-card__icon">🎯</div>
+            <h3>Rigueur</h3>
+            <p>
+              Chaque détail compte. Je ne considère un chantier comme terminé que
+              quand le résultat est à la hauteur de ce que j'aurais voulu pour
+              ma propre maison.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-card__icon">🌿</div>
+            <h3>Respect de l'environnement</h3>
+            <p>
+              La vapeur, c'est de l'eau. Pas de produits chimiques, pas de ruissellement
+              pollué. Je travaille proprement, sur votre propriété et sur l'île que
+              j'aime.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-card__icon">📞</div>
+            <h3>Proximité & disponibilité</h3>
+            <p>
+              Je réponds à mes appels. Je rappelle si je suis sur un chantier.
+              Je suis joignable, réactif, et je prends le temps d'expliquer
+              ce que je fais et pourquoi.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-card__icon">🔒</div>
+            <h3>Sécurité avant tout</h3>
+            <p>
+              Tous mes équipements sont certifiés et régulièrement contrôlés.
+              Je ne prends aucun risque inutile — ni pour moi, ni pour vos biens,
+              ni pour les personnes autour du chantier.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-card__icon">🏝️</div>
+            <h3>Ancrage local</h3>
+            <p>
+              Je vis ici, je travaille ici, mes clients sont mes voisins. Cette
+              relation de confiance, construite au fil des années, est le cœur
+              de mon activité.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>Prêt à travailler ensemble ?</h2>
+        <p>
+          Que ce soit pour un petit nettoyage ou un chantier plus ambitieux,
+          contactez-moi et voyons comment je peux vous aider.
+        </p>
+        <div style="display:flex; gap:16px; flex-wrap:wrap; justify-content:center;">
+          <button class="btn btn--accent btn--lg" onclick="openOverlay()">
+            Demander un devis gratuit
+          </button>
+          <a href="realisations.html" class="btn btn--outline-white btn--lg">
+            Voir mes réalisations
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- PIED DE PAGE -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__about">
+          <div class="footer__brand">
+            Corse Pro Services
+          </div>
+          <p class="footer__desc">
+            Artisan indépendant spécialisé dans le nettoyage à la vapeur, l'entretien de
+            climatisation et les travaux acrobatiques en hauteur. Basé à Ajaccio, j'interviens
+            sur toute la Corse.
+          </p>
+        </div>
+        <div class="footer__col">
+          <h4>Navigation</h4>
+          <ul class="footer__nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="realisations.html">Mes réalisations</a></li>
+            <li><a href="apropos.html">À propos</a></li>
+            <li><a href="actualites.html">Actualités</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <div class="footer__contact-items">
+            <div class="footer__contact-item">
+              <span class="ico">📞</span>
+              <span><a href="tel:+33622854173">06 22 85 41 73</a></span>
+            </div>
+            <div class="footer__contact-item">
+              <span class="ico">✉️</span>
+              <span><a href="mailto:contact@corse-pro-services.fr">contact@corse-pro-services.fr</a></span>
+            </div>
+            <div class="footer__contact-item">
+              <span class="ico">📍</span>
+              <span>Ajaccio, 20000<br>Intervention toute la Corse</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2025 Corse Pro Services · Artisan indépendant</span>
+        <span>Fait avec soin en Corse 🌿</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- OVERLAY FORMULAIRE -->
+  <div class="overlay-backdrop" id="overlayBackdrop" role="dialog" aria-modal="true" aria-labelledby="overlayTitle">
+    <div class="overlay-modal">
+      <button class="overlay-close" onclick="closeOverlay()" aria-label="Fermer">✕</button>
+      <div id="formBody" class="form-body">
+        <div class="overlay-modal__header">
+          <h2 id="overlayTitle">Demandez un devis gratuit</h2>
+          <p>Remplissez ce formulaire et je vous recontacte dans les plus brefs délais pour discuter de votre projet.</p>
+        </div>
+        <form id="quoteForm" novalidate>
+          <div class="form-group">
+            <label for="fieldName">Votre nom <span class="req">*</span></label>
+            <input type="text" id="fieldName" name="name" class="form-control"
+                   placeholder="Jean Dupont" autocomplete="name">
+            <div class="form-error-msg" id="nameError"></div>
+          </div>
+          <div class="form-group">
+            <label for="fieldPhone">Votre numéro de téléphone <span class="req">*</span></label>
+            <input type="tel" id="fieldPhone" name="phone" class="form-control"
+                   placeholder="06 12 34 56 78" autocomplete="tel">
+            <div class="form-error-msg" id="phoneError"></div>
+          </div>
+          <div class="form-group">
+            <label for="fieldMessage">Décrivez votre besoin <span class="req">*</span></label>
+            <textarea id="fieldMessage" name="message" class="form-control" rows="4"
+                      placeholder="Ex : Nettoyage vapeur de ma toiture, environ 120 m²…"></textarea>
+            <div class="form-error-msg" id="messageError"></div>
+          </div>
+          <button type="submit" class="btn btn--accent btn--lg form-submit">
+            Envoyer ma demande
+          </button>
+        </form>
+      </div>
+      <div class="overlay-success" id="overlaySuccess">
+        <div class="overlay-success__check">✓</div>
+        <h3>Message envoyé !</h3>
+        <p>
+          Votre message a bien été envoyé, je vous recontacte rapidement !<br>
+          En attendant, vous pouvez me joindre directement au
+          <strong><a href="tel:+33622854173" style="color:var(--primary)">06 22 85 41 73</a></strong>.
+        </p>
+        <button class="btn btn--outline" style="margin-top:24px" onclick="closeOverlay(); resetOverlay();">
+          Fermer
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

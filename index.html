@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corse Pro Services — Nettoyage vapeur & travaux en hauteur en Corse</title>
+  <meta name="description" content="Artisan indépendant en Corse. Nettoyage à la vapeur (façades, toitures, allées), entretien de climatisation et travaux acrobatiques en hauteur. Basé à Ajaccio.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ======================================================
+       NAVIGATION
+       ====================================================== -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__container">
+      <a href="index.html" class="navbar__logo">
+        Corse Pro Services
+      </a>
+      <nav class="navbar__nav" id="navMenu" aria-label="Navigation principale">
+        <a href="index.html"        class="navbar__link">Accueil</a>
+        <a href="realisations.html" class="navbar__link">Mes réalisations</a>
+        <a href="apropos.html"      class="navbar__link">À propos</a>
+        <a href="actualites.html"   class="navbar__link">Actualités</a>
+        <button class="btn btn--accent navbar__cta" onclick="openOverlay()">
+          Devis gratuit
+        </button>
+      </nav>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ======================================================
+         HERO
+         ====================================================== -->
+    <section class="hero">
+      <div class="hero__bg" role="img" aria-label="Façade de maison après nettoyage vapeur en Corse"></div>
+
+      <div class="container">
+        <div class="hero__content">
+          <h1>Nettoyage vapeur<br>Entretien climatisation<br>et travaux en hauteur</h1>
+          <p class="hero__tagline">
+            Façades, toitures, climatisation, accès difficiles —<br>
+            je me déplace sur toute la Corse pour un résultat impeccable et durable.
+          </p>
+          <div class="hero__actions">
+            <button class="btn btn--accent btn--lg" onclick="openOverlay()">
+              Demander un devis gratuit
+            </button>
+            <a href="tel:+33622854173" class="btn btn--outline-white btn--lg">
+              📞 06 22 85 41 73
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Avis Google flottant en bas à droite -->
+      <a href="#" target="_blank" class="hero__reviews" aria-label="Voir les avis Google">
+        <div class="hero__reviews-g">
+          <svg width="22" height="22" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#4285F4" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 2.9l5.7-5.7C34.5 6.5 29.5 4 24 4 12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20c0-1.3-.1-2.5-.4-3.5z"/>
+            <path fill="#34A853" d="M6.3 14.7l6.6 4.8C14.6 15.7 19 12 24 12c3.1 0 5.8 1.1 8 2.9l5.7-5.7C34.5 6.5 29.5 4 24 4 16.3 4 9.6 8.3 6.3 14.7z"/>
+            <path fill="#FBBC05" d="M24 44c5.2 0 10-1.7 13.7-4.7l-6.3-5.2C29.5 35.6 26.9 36 24 36c-5.2 0-9.6-3.3-11.3-8H6.3C9.5 35.7 16.2 44 24 44z"/>
+            <path fill="#EA4335" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.3 5.2C37.1 39.8 44 34.6 44 24c0-1.3-.1-2.5-.4-3.5z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="hero__reviews-stars">★★★★★</div>
+          <div class="hero__reviews-score">4,8 / 5 · 52 avis</div>
+          <div class="hero__reviews-count">Voir les avis Google →</div>
+        </div>
+      </a>
+
+      <!-- Badge localisation en bas à gauche -->
+      <div class="hero__location">
+        <span>📍</span>
+        <span>Ajaccio · intervention toute la Corse</span>
+      </div>
+
+    </section>
+
+    <!-- ======================================================
+         MES PRESTATIONS
+         ====================================================== -->
+    <section class="section">
+      <div class="container">
+        <div class="section__header">
+          <h2>Les travaux que je réalise</h2>
+          <p>Des prestations spécialisées, réalisées avec soin et les bons équipements — pour des résultats durables.</p>
+        </div>
+        <div class="services-grid">
+
+          <!-- Nettoyage vapeur -->
+          <div class="service-card">
+            <div class="service-card__image">
+              <img src="assets/images/travaux/nettoyage-vapeur.jpg"
+                   alt="Homme en train de nettoyer une toiture à la vapeur" loading="lazy">
+            </div>
+            <div class="service-card__body">
+              <h3>Nettoyage à la vapeur</h3>
+              <p>Un nettoyage puissant et écologique, sans produits chimiques agressifs, adapté à toutes les surfaces extérieures.</p>
+              <ul class="service-card__list">
+                <li>Façades et murs</li>
+                <li>Toitures et tuiles</li>
+                <li>Allées, terrasses et dallages</li>
+                <li>Application d'hydrofuge</li>
+              </ul>
+              <div class="service-card__cta">
+                <button class="btn btn--accent" onclick="openOverlay('Bonjour, j\'ai une maison individuelle avec une toiture en tuiles très encrassée (mousses, lichens). Surface d\'environ 120 m². Est-ce que vous pouvez passer la voir et me faire un devis ?')">Me demander un devis</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Climatisation -->
+          <div class="service-card">
+            <div class="service-card__image">
+              <img src="assets/images/travaux/climatisation.jpg"
+                   alt="Technicien entretenant une climatisation à la vapeur" loading="lazy">
+            </div>
+            <div class="service-card__body">
+              <h3>Entretien de climatisation</h3>
+              <p>Un entretien rigoureux à la vapeur pour des unités intérieures et extérieures propres, performantes et saines.</p>
+              <ul class="service-card__list">
+                <li>Nettoyage des unités intérieures</li>
+                <li>Nettoyage des condensateurs extérieurs</li>
+                <li>Désinfection et déodorisation</li>
+                <li>Amélioration de la qualité de l'air</li>
+              </ul>
+              <div class="service-card__cta">
+                <button class="btn btn--accent" onclick="openOverlay('Bonjour, j\'ai 2 unités de climatisation split dans mon appartement (salon + chambre) qui n\'ont pas été entretenues depuis au moins 2 ans. Je voudrais un nettoyage complet à la vapeur avant l\'été. Pouvez-vous me faire un devis ?')">Me demander un devis</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Travaux en hauteur -->
+          <div class="service-card">
+            <div class="service-card__image">
+              <img src="assets/images/travaux/travaux-hauteur.jpg"
+                   alt="Technicien en accès acrobatique sur un bâtiment en hauteur" loading="lazy">
+            </div>
+            <div class="service-card__body">
+              <h3>Travaux acrobatiques en hauteur</h3>
+              <p>Formations spécialisées et matériel certifié pour atteindre les zones inaccessibles aux échafaudages classiques.</p>
+              <ul class="service-card__list">
+                <li>Accès difficiles et zones isolées</li>
+                <li>Toits, clochers, falaises</li>
+                <li>Nettoyage et traitement en hauteur</li>
+                <li>Interventions sur tous types de bâtiments</li>
+              </ul>
+              <div class="service-card__cta">
+                <button class="btn btn--accent" onclick="openOverlay('Bonjour, j\'ai une villa avec une toiture à forte pente côté falaise — impossible d\'y monter un échafaudage. J\'aurais besoin d\'un nettoyage et d\'un traitement hydrofuge. Est-ce que vous pouvez intervenir par cordage et me faire un devis ?')">Me demander un devis</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         QUI SUIS-JE ?
+         ====================================================== -->
+    <section class="section section--light">
+      <div class="container">
+        <div class="about-preview__inner">
+          <div class="about-preview__image">
+            <img src="assets/moi.jpg"
+                 alt="Igor, artisan Corse Pro Services" loading="lazy">
+            <div class="about-preview__badge">
+              <div class="about-preview__badge-num">15+</div>
+              <div class="about-preview__badge-label">ans<br>d'expérience</div>
+            </div>
+          </div>
+          <div class="about-preview__content">
+            <h2>Qui suis-je ?</h2>
+            <p>
+              Je m'appelle Igor, et je suis artisan indépendant en Corse depuis plus de quinze ans.
+              Né ici, j'ai grandi en regardant les bâtiments de notre île se salir, se dégrader,
+              et souvent rester sans solution faute d'artisans spécialisés et disponibles.
+            </p>
+            <p>
+              Aujourd'hui, je mets mon expertise au service des particuliers et des professionnels
+              du sud au nord de l'île. Je travaille seul, sans sous-traitance, parce que je tiens à
+              réaliser chaque prestation moi-même, avec la rigueur et le soin que vous méritez.
+            </p>
+            <blockquote class="about-preview__quote">
+              "Mon travail, c'est votre satisfaction. Pas plus, pas moins. Je me déplace, j'évalue,
+              et je vous dis franchement ce que je peux faire pour vous."
+            </blockquote>
+            <a href="apropos.html" class="btn btn--outline">En savoir plus sur mon parcours</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         CTA FINAL
+         ====================================================== -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>Un projet ? Parlons-en.</h2>
+        <p>
+          Je me déplace gratuitement pour évaluer votre chantier et vous proposer un devis
+          transparent, sans surprise. Un simple appel suffit.
+        </p>
+        <div style="display:flex; gap:16px; flex-wrap:wrap; justify-content:center;">
+          <button class="btn btn--accent btn--lg" onclick="openOverlay()">
+            Demander un devis gratuit
+          </button>
+          <a href="tel:+33622854173" class="btn btn--outline-white btn--lg">
+            📞 06 22 85 41 73
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================
+       PIED DE PAGE
+       ====================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__about">
+          <div class="footer__brand">
+            Corse Pro Services
+          </div>
+          <p class="footer__desc">
+            Artisan indépendant spécialisé dans le nettoyage à la vapeur, l'entretien de
+            climatisation et les travaux acrobatiques en hauteur. Basé à Ajaccio, j'interviens
+            sur toute la Corse.
+          </p>
+        </div>
+        <div class="footer__col">
+          <h4>Navigation</h4>
+          <ul class="footer__nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="realisations.html">Mes réalisations</a></li>
+            <li><a href="apropos.html">À propos</a></li>
+            <li><a href="actualites.html">Actualités</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <div class="footer__contact-items">
+            <div class="footer__contact-item">
+              <span class="ico">📞</span>
+              <span><a href="tel:+33622854173">06 22 85 41 73</a></span>
+            </div>
+            <div class="footer__contact-item">
+              <span class="ico">✉️</span>
+              <span><a href="mailto:contact@corse-pro-services.fr">contact@corse-pro-services.fr</a></span>
+            </div>
+            <div class="footer__contact-item">
+              <span class="ico">📍</span>
+              <span>Ajaccio, 20000<br>Intervention toute la Corse</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2025 Corse Pro Services · Artisan indépendant</span>
+        <span>Fait avec soin en Corse 🌿</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================================================
+       OVERLAY FORMULAIRE DE DEVIS
+       ====================================================== -->
+  <div class="overlay-backdrop" id="overlayBackdrop" role="dialog" aria-modal="true" aria-labelledby="overlayTitle">
+    <div class="overlay-modal">
+      <button class="overlay-close" onclick="closeOverlay()" aria-label="Fermer">✕</button>
+
+      <div id="formBody" class="form-body">
+        <div class="overlay-modal__header">
+          <h2 id="overlayTitle">Demandez un devis gratuit</h2>
+          <p>Remplissez ce formulaire et je vous recontacte dans les plus brefs délais pour discuter de votre projet.</p>
+        </div>
+        <form id="quoteForm" novalidate>
+          <div class="form-group">
+            <label for="fieldName">Votre nom <span class="req">*</span></label>
+            <input type="text" id="fieldName" name="name" class="form-control"
+                   placeholder="Jean Dupont" autocomplete="name">
+            <div class="form-error-msg" id="nameError"></div>
+          </div>
+          <div class="form-group">
+            <label for="fieldPhone">Votre numéro de téléphone <span class="req">*</span></label>
+            <input type="tel" id="fieldPhone" name="phone" class="form-control"
+                   placeholder="06 12 34 56 78" autocomplete="tel">
+            <div class="form-error-msg" id="phoneError"></div>
+          </div>
+          <div class="form-group">
+            <label for="fieldMessage">Décrivez votre besoin <span class="req">*</span></label>
+            <textarea id="fieldMessage" name="message" class="form-control" rows="4"
+                      placeholder="Ex : Nettoyage vapeur de ma toiture, environ 120 m², maison à Ajaccio…"></textarea>
+            <div class="form-error-msg" id="messageError"></div>
+          </div>
+          <button type="submit" class="btn btn--accent btn--lg form-submit">
+            Envoyer ma demande
+          </button>
+        </form>
+      </div>
+
+      <div class="overlay-success" id="overlaySuccess">
+        <div class="overlay-success__check">✓</div>
+        <h3>Message envoyé !</h3>
+        <p>
+          Votre message a bien été envoyé, je vous recontacte rapidement !<br>
+          En attendant, vous pouvez me joindre directement au
+          <strong><a href="tel:+33622854173" style="color:var(--primary)">06 22 85 41 73</a></strong>.
+        </p>
+        <button class="btn btn--outline" style="margin-top:24px" onclick="closeOverlay(); resetOverlay();">
+          Fermer
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
