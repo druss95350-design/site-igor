@@ -251,6 +251,7 @@ p:last-child { margin-bottom: 0; }
 .hero__bg {
   position: absolute;
   inset: 0;
+  background-color: #1c1c1e;
   background-image: url('../assets/images/hero/corse.jpg');
   background-size: cover;
   background-position: center;
