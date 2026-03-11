@@ -1,7 +1,28 @@
 /* ============================================================
    CORSE PRO SERVICES — script.js
-   Gestion : overlay formulaire, lightbox, navigation
+   Gestion : overlay formulaire, lightbox, navigation, avis
    ============================================================ */
+
+/* =========================================================
+   PANEL AVIS GOOGLE
+   ========================================================= */
+
+const reviewsPanel    = document.getElementById('reviewsPanel');
+const reviewsBackdrop = document.getElementById('reviewsBackdrop');
+
+function openReviews() {
+  if (!reviewsPanel) return;
+  reviewsPanel.classList.add('open');
+  reviewsBackdrop.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeReviews() {
+  if (!reviewsPanel) return;
+  reviewsPanel.classList.remove('open');
+  reviewsBackdrop.classList.remove('open');
+  document.body.style.overflow = '';
+}
 
 /* =========================================================
    OVERLAY — Formulaire de devis
@@ -60,6 +81,8 @@ document.addEventListener('keydown', function(e) {
       closeLightbox();
     } else if (overlayBackdrop && overlayBackdrop.classList.contains('open')) {
       closeOverlay();
+    } else if (reviewsPanel && reviewsPanel.classList.contains('open')) {
+      closeReviews();
     }
   }
 });

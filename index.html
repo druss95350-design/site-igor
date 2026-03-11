@@ -59,7 +59,7 @@
       </div>
 
       <!-- Avis Google flottant en bas à droite -->
-      <a href="#" target="_blank" class="hero__reviews" aria-label="Voir les avis Google">
+      <button type="button" class="hero__reviews" onclick="openReviews()" aria-label="Voir les avis Google">
         <div class="hero__reviews-g">
           <svg width="22" height="22" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
             <path fill="#4285F4" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 2.9l5.7-5.7C34.5 6.5 29.5 4 24 4 12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20c0-1.3-.1-2.5-.4-3.5z"/>
@@ -73,7 +73,7 @@
           <div class="hero__reviews-score">4,8 / 5 · 52 avis</div>
           <div class="hero__reviews-count">Voir les avis Google →</div>
         </div>
-      </a>
+      </button>
 
       <!-- Badge localisation en bas à gauche -->
       <div class="hero__location">
@@ -321,6 +321,112 @@
       </div>
     </div>
   </div>
+
+  <!-- ======================================================
+       SLIDER AVIS GOOGLE
+       ====================================================== -->
+  <div class="reviews-backdrop" id="reviewsBackdrop" onclick="closeReviews()"></div>
+  <aside class="reviews-panel" id="reviewsPanel" aria-label="Avis Google">
+    <div class="reviews-panel__header">
+      <div class="reviews-panel__title">
+        <svg width="22" height="22" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+          <path fill="#4285F4" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 2.9l5.7-5.7C34.5 6.5 29.5 4 24 4 12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20c0-1.3-.1-2.5-.4-3.5z"/>
+          <path fill="#34A853" d="M6.3 14.7l6.6 4.8C14.6 15.7 19 12 24 12c3.1 0 5.8 1.1 8 2.9l5.7-5.7C34.5 6.5 29.5 4 24 4 16.3 4 9.6 8.3 6.3 14.7z"/>
+          <path fill="#FBBC05" d="M24 44c5.2 0 10-1.7 13.7-4.7l-6.3-5.2C29.5 35.6 26.9 36 24 36c-5.2 0-9.6-3.3-11.3-8H6.3C9.5 35.7 16.2 44 24 44z"/>
+          <path fill="#EA4335" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.3 5.2C37.1 39.8 44 34.6 44 24c0-1.3-.1-2.5-.4-3.5z"/>
+        </svg>
+        <div>
+          <div style="font-weight:700; font-size:1rem;">Avis Google</div>
+          <div style="font-size:0.82rem; color:var(--text-muted);">4,8 / 5 · 52 avis</div>
+        </div>
+      </div>
+      <button class="reviews-panel__close" onclick="closeReviews()" aria-label="Fermer">✕</button>
+    </div>
+
+    <div class="reviews-panel__score">
+      <div class="reviews-panel__score-num">4,8</div>
+      <div>
+        <div class="reviews-panel__stars">★★★★★</div>
+        <div style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">Basé sur 52 avis</div>
+      </div>
+    </div>
+
+    <div class="reviews-list">
+
+      <div class="review-card">
+        <div class="review-card__top">
+          <div class="review-card__avatar">M</div>
+          <div>
+            <div class="review-card__name">Marie-Christine F.</div>
+            <div class="review-card__date">Il y a 2 semaines</div>
+          </div>
+        </div>
+        <div class="review-card__stars">★★★★★</div>
+        <p class="review-card__text">Igor a nettoyé ma toiture à la vapeur en une journée. Résultat impeccable, la maison a retrouvé son éclat d'origine. Très professionnel, ponctuel et soigneux. Je recommande vivement.</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-card__top">
+          <div class="review-card__avatar">J</div>
+          <div>
+            <div class="review-card__name">Jean-Paul M.</div>
+            <div class="review-card__date">Il y a 1 mois</div>
+          </div>
+        </div>
+        <div class="review-card__stars">★★★★★</div>
+        <p class="review-card__text">Intervention pour l'entretien de mes 3 climatiseurs avant l'été. Travail sérieux, équipement professionnel. Igor explique ce qu'il fait, il n'y a aucune mauvaise surprise. Tarif honnête.</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-card__top">
+          <div class="review-card__avatar">S</div>
+          <div>
+            <div class="review-card__name">Sophie R.</div>
+            <div class="review-card__date">Il y a 2 mois</div>
+          </div>
+        </div>
+        <div class="review-card__stars">★★★★★</div>
+        <p class="review-card__text">Notre façade en pierre était méconnaissable tellement elle était encrassée. Après le passage d'Igor, elle est comme neuve. Accès difficile côté jardin, il a géré ça sans problème avec ses cordes.</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-card__top">
+          <div class="review-card__avatar">A</div>
+          <div>
+            <div class="review-card__name">Antoine V.</div>
+            <div class="review-card__date">Il y a 3 mois</div>
+          </div>
+        </div>
+        <div class="review-card__stars">★★★★★</div>
+        <p class="review-card__text">Devis rapide, intervention dans les délais, travail très propre. Igor est quelqu'un de confiance, il ne survend pas et il tient sa parole. Notre toiture n'avait jamais été aussi propre.</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-card__top">
+          <div class="review-card__avatar">C</div>
+          <div>
+            <div class="review-card__name">Claudine B.</div>
+            <div class="review-card__date">Il y a 4 mois</div>
+          </div>
+        </div>
+        <div class="review-card__stars">★★★★★</div>
+        <p class="review-card__text">J'avais des doutes sur le nettoyage vapeur pour mon allée en granit. Igor m'a bien expliqué la technique et le résultat a dépassé mes attentes. Je referai appel à lui sans hésiter.</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-card__top">
+          <div class="review-card__avatar">L</div>
+          <div>
+            <div class="review-card__name">Luc T.</div>
+            <div class="review-card__date">Il y a 5 mois</div>
+          </div>
+        </div>
+        <div class="review-card__stars">★★★★★</div>
+        <p class="review-card__text">Prestation impeccable pour le nettoyage de la toiture de notre résidence secondaire à Porto-Vecchio. Igor s'est adapté aux contraintes du terrain. Sérieux et efficace, je recommande.</p>
+      </div>
+
+    </div>
+  </aside>
 
   <script src="js/script.js"></script>
 </body>
