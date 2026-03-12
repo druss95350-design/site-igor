@@ -139,6 +139,17 @@ const AdminRealisations = (() => {
       if (estConnecte) activerEdition(carte, p);
     });
 
+    if (!estConnecte) {
+      requestAnimationFrame(() => {
+        liste.querySelectorAll('.post-card__more-btn').forEach(btn => {
+          const textEl = btn.previousElementSibling;
+          if (textEl && textEl.scrollHeight <= textEl.clientHeight + 1) {
+            btn.style.display = 'none';
+          }
+        });
+      });
+    }
+
     if (estConnecte) majBoutonsOrdre();
   }
 
@@ -152,11 +163,7 @@ const AdminRealisations = (() => {
     const metaDate = formatDate(p.date_chantier);
     const metaLieu = p.lieu || '';
 
-    // Description : en mode admin on affiche tout; en public on tronque
     const desc = p.description || '';
-    const SEUIL = 180;
-    const descCourte = !estConnecte && desc.length > SEUIL ? desc.slice(0, SEUIL) : desc;
-    const descReste  = !estConnecte && desc.length > SEUIL ? desc.slice(SEUIL) : '';
 
     return `
 <div class="project-item post-card${isDraft ? ' post-card--brouillon' : ''}"
@@ -192,8 +199,8 @@ const AdminRealisations = (() => {
     ${estConnecte ? `
       <p class="post-card__text editable" data-field="description">${escBr(desc) || '<em style="opacity:.4">+ Description…</em>'}</p>
     ` : `
-      <p class="post-card__text">${escBr(descCourte)}${descReste ? `<span class="post-card__ellipsis">…</span><span class="post-card__text-full">${escBr(descReste)}</span>` : ''}</p>
-      ${descReste ? `<button class="post-card__more-btn" onclick="toggleDesc(this)">… En savoir plus</button>` : ''}
+      <p class="post-card__text">${escBr(desc)}</p>
+      ${desc ? `<button class="post-card__more-btn" onclick="toggleDesc(this)">… En savoir plus</button>` : ''}
     `}
   </div>
 

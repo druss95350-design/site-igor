@@ -9,9 +9,9 @@
 
 function toggleDesc(btn) {
   const body = btn.closest('.post-card__body');
-  const full = body.querySelector('.post-card__text-full');
-  const expanded = full.classList.toggle('expanded');
-  btn.textContent = expanded ? 'Voir moins' : '... En savoir plus';
+  const textEl = body.querySelector('.post-card__text');
+  const expanded = textEl.classList.toggle('expanded');
+  btn.textContent = expanded ? 'Voir moins' : '… En savoir plus';
 }
 
 /* =========================================================

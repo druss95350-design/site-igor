@@ -704,12 +704,17 @@ p:last-child { margin-bottom: 0; }
   color: var(--text-muted);
   line-height: 1.7;
   margin-bottom: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
-.post-card__text-full { display: none; }
-.post-card__text-full.expanded { display: inline; }
-p:has(> .post-card__text-full.expanded) .post-card__ellipsis { display: none; }
+.post-card__text.expanded {
+  display: block;
+  overflow: visible;
+}
 .post-card__more-btn {
-  display: inline;
+  display: block;
   background: none;
   border: none;
   padding: 4px 0 0;
