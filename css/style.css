@@ -664,6 +664,138 @@ p:last-child { margin-bottom: 0; }
   margin: 0;
 }
 
+/* ============================================================
+   POST-CARD — Présentation chantier style réseau social
+   ============================================================ */
+
+/* Feed */
+.projects-list--feed { gap: 40px; }
+
+/* Carte */
+.post-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.09), 0 1px 3px rgba(0,0,0,0.05);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+/* En-tête */
+.post-card__header { padding: 20px 24px 14px; }
+.post-card__meta {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 5px;
+}
+
+/* Corps */
+.post-card__body { padding: 0 24px 18px; }
+.post-card__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+.post-card__text {
+  font-size: 0.93rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+.post-card__text-full { display: none; }
+.post-card__text-full.expanded { display: inline; }
+p:has(> .post-card__text-full.expanded) .post-card__ellipsis { display: none; }
+.post-card__more-btn {
+  display: inline;
+  background: none;
+  border: none;
+  padding: 4px 0 0;
+  color: var(--primary);
+  font-size: 0.93rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--ease);
+}
+.post-card__more-btn:hover { color: var(--accent-dark); }
+
+/* Grille de photos — base */
+.post-photos {
+  display: grid;
+  gap: 3px;
+}
+.post-photos .project-photo {
+  aspect-ratio: unset;
+  height: 100%;
+  min-height: 0;
+}
+
+/* 1 photo */
+.post-photos--1 .project-photo { height: auto; aspect-ratio: 16/9; }
+
+/* 2 photos */
+.post-photos--2 { grid-template-columns: 1fr 1fr; height: 280px; }
+
+/* 3 photos : grande à gauche, 2 petites empilées à droite */
+.post-photos--3 {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  height: 300px;
+}
+.post-photos--3 .project-photo:first-child { grid-row: span 2; }
+
+/* 4 photos : 2 grandes en haut, 2 petites en bas */
+.post-photos--4 {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1.4fr 1fr;
+  height: 380px;
+}
+
+/* 5+ photos : même que 4, badge sur la 4e tuile */
+.post-photos--many {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1.4fr 1fr;
+  height: 380px;
+}
+body:not(.admin-actif) .post-photos--many .project-photo:nth-child(n+5) { display: none; }
+
+/* Badge +N */
+.project-photo--more::after { display: none; }
+.project-photo__badge {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.54);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Pied de carte */
+.post-card__footer {
+  padding: 16px 24px 20px;
+  background: var(--bg-light);
+}
+
+@media (max-width: 600px) {
+  .post-photos--2,
+  .post-photos--3,
+  .post-photos--4,
+  .post-photos--many { height: 220px; }
+  .post-card__header,
+  .post-card__body,
+  .post-card__footer { padding-left: 16px; padding-right: 16px; }
+}
+
 /* 13. À propos — page complète */
 .about-full__inner {
   display: grid;
