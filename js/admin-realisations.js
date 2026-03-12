@@ -12,7 +12,6 @@ const AdminRealisations = (() => {
   /* ── État ─────────────────────────────────────────────────── */
   let estConnecte   = false;
   let projetsCache  = [];
-  let dragSrc       = null;   // pour les photos
 
   /* ── CSS local injecté ────────────────────────────────────── */
 
@@ -31,52 +30,6 @@ const AdminRealisations = (() => {
         transform: rotate(45deg); z-index: 5;
         pointer-events: none; box-shadow: 0 2px 6px rgba(245,158,11,.4);
       }
-
-      /* ── Toolbar par carte ── */
-      .admin-toolbar {
-        display: flex; align-items: center; justify-content: space-between;
-        flex-wrap: wrap; gap: 8px;
-        padding: 10px 20px; background: #faf8f0;
-        border-bottom: 1px solid #ede8d0;
-      }
-      .admin-toolbar__left { display: flex; align-items: center; gap: 8px; }
-      .admin-toolbar__right { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-      .admin-status { font-size: .82rem; font-weight: 600; }
-      .admin-status--publie  { color: #166534; }
-      .admin-status--brouillon { color: #b45309; }
-      .save-msg {
-        font-size: .8rem; font-weight: 600; padding: 3px 10px;
-        border-radius: 6px; display: none;
-      }
-      .save-msg--ok  { color: #166534; background: #dcfce7; display: inline; }
-      .save-msg--err { color: #991b1b; background: #fee2e2; display: inline; }
-      .adm-btn {
-        display: inline-flex; align-items: center; gap: 4px;
-        padding: 6px 13px; border-radius: 6px; font-size: .8rem;
-        font-weight: 600; font-family: 'Inter', sans-serif;
-        cursor: pointer; border: 1px solid transparent; transition: all .18s;
-      }
-      .adm-btn--save    { background: #1c1c1e; color: #fbef43; }
-      .adm-btn--save:hover { background: #2d2d30; }
-      .adm-btn--publish { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
-      .adm-btn--publish:hover { background: #bbf7d0; }
-      .adm-btn--draft   { background: #fef9c3; color: #854d0e; border-color: #fde68a; }
-      .adm-btn--draft:hover { background: #fde68a; }
-      .adm-btn--delete  { background: #fee2e2; color: #991b1b; border-color: #fecaca; }
-      .adm-btn--delete:hover { background: #fecaca; }
-
-      /* ── Champs éditables ── */
-      .editable { cursor: text; border-radius: 4px; transition: outline .12s; }
-      .editable:hover { outline: 2px dashed rgba(251,239,67,.7); outline-offset: 2px; }
-      .editable.is-editing { outline: 2px solid #fbef43 !important; outline-offset: 2px; }
-      .editable input, .editable textarea {
-        width: 100%; background: #fffef0; border: none; border-radius: 4px;
-        padding: 3px 6px; font-family: inherit; font-size: inherit;
-        font-weight: inherit; color: inherit; line-height: inherit;
-        outline: none; resize: vertical;
-      }
-      .editable input[type="date"] { font-size: .88rem; }
-      .admin-placeholder { opacity: .45; border: 2px dashed rgba(0,0,0,.2) !important; }
 
       /* ── Grille admin (colonne simple) ── */
       .post-photos--admin {
@@ -129,14 +82,6 @@ const AdminRealisations = (() => {
         padding: 0 0 16px;
       }
       body.mode-visiteur .admin-actions-bar { display: none !important; }
-
-      /* ── Boutons déplacement carte ── */
-      .adm-btn--move {
-        background: rgba(0,0,0,.06); color: #555; border-color: rgba(0,0,0,.12);
-        padding: 6px 9px; font-size: .85rem; line-height: 1;
-      }
-      .adm-btn--move:hover { background: rgba(0,0,0,.13); }
-      .adm-btn--move:disabled { opacity: .3; cursor: default; }
     `;
     document.head.appendChild(s);
   }
@@ -550,11 +495,7 @@ const AdminRealisations = (() => {
   }
 
   function afficherMsg(projetId, msg, type) {
-    const el = document.getElementById(`smsg-${projetId}`);
-    if (!el) return;
-    el.textContent  = msg;
-    el.className    = `save-msg save-msg--${type}`;
-    setTimeout(() => { el.className = 'save-msg'; el.textContent = ''; }, 3000);
+    AdminCore.afficherMsg(document.getElementById(`smsg-${projetId}`), msg, type);
   }
 
   /* ── Photos ───────────────────────────────────────────────── */
@@ -694,33 +635,10 @@ const AdminRealisations = (() => {
   function initDragDrop(carteEl, projetId) {
     const container = carteEl.querySelector(`[data-photos-container="${projetId}"]`);
     if (!container) return;
-
-    container.querySelectorAll('.project-photo[draggable]').forEach(ph => {
-      ph.addEventListener('dragstart', e => {
-        dragSrc = ph;
-        e.dataTransfer.effectAllowed = 'move';
-        setTimeout(() => ph.classList.add('drag-over'), 0);
-      });
-      ph.addEventListener('dragend', () => {
-        dragSrc = null;
-        container.querySelectorAll('.project-photo').forEach(p => p.classList.remove('drag-over'));
-      });
-      ph.addEventListener('dragover', e => { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; });
-      ph.addEventListener('dragenter', () => { if (dragSrc !== ph) ph.classList.add('drag-over'); });
-      ph.addEventListener('dragleave', () => ph.classList.remove('drag-over'));
-      ph.addEventListener('drop', e => {
-        e.preventDefault();
-        if (!dragSrc || dragSrc === ph) return;
-        ph.classList.remove('drag-over');
-        // Swap DOM
-        const allPhotos = Array.from(container.querySelectorAll('.project-photo'));
-        const iSrc = allPhotos.indexOf(dragSrc);
-        const iDst = allPhotos.indexOf(ph);
-        if (iSrc < iDst) container.insertBefore(dragSrc, ph.nextSibling);
-        else             container.insertBefore(dragSrc, ph);
-        // Enregistrer le nouvel ordre
-        enregistrerOrdre(projetId, container);
-      });
+    AdminCore.initDragDrop(container, {
+      selector: '.project-photo[draggable]',
+      dragOverClass: 'drag-over',
+      onDrop: () => enregistrerOrdre(projetId, container),
     });
   }
 

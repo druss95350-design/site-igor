@@ -98,6 +98,58 @@ const AdminCore = (() => {
         text-align: center; padding: 64px 0;
         color: var(--text-muted, #6b7280); font-size: 1rem;
       }
+
+      /* ── Toolbar par carte ── */
+      .admin-toolbar {
+        display: flex; align-items: center; justify-content: space-between;
+        flex-wrap: wrap; gap: 8px;
+        padding: 10px 20px; background: #faf8f0;
+        border-bottom: 1px solid #ede8d0;
+      }
+      .admin-toolbar__left { display: flex; align-items: center; gap: 8px; }
+      .admin-toolbar__right { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+      .admin-status { font-size: .82rem; font-weight: 600; }
+      .admin-status--publie  { color: #166534; }
+      .admin-status--brouillon { color: #b45309; }
+      .save-msg {
+        font-size: .8rem; font-weight: 600; padding: 3px 10px;
+        border-radius: 6px; display: none;
+      }
+      .save-msg--ok  { color: #166534; background: #dcfce7; display: inline; }
+      .save-msg--err { color: #991b1b; background: #fee2e2; display: inline; }
+      .adm-btn {
+        display: inline-flex; align-items: center; gap: 4px;
+        padding: 6px 13px; border-radius: 6px; font-size: .8rem;
+        font-weight: 600; font-family: 'Inter', sans-serif;
+        cursor: pointer; border: 1px solid transparent; transition: all .18s;
+      }
+      .adm-btn--save    { background: #1c1c1e; color: #fbef43; }
+      .adm-btn--save:hover { background: #2d2d30; }
+      .adm-btn--publish { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
+      .adm-btn--publish:hover { background: #bbf7d0; }
+      .adm-btn--draft   { background: #fef9c3; color: #854d0e; border-color: #fde68a; }
+      .adm-btn--draft:hover { background: #fde68a; }
+      .adm-btn--delete  { background: #fee2e2; color: #991b1b; border-color: #fecaca; }
+      .adm-btn--delete:hover { background: #fecaca; }
+      .adm-btn--move {
+        background: rgba(0,0,0,.06); color: #555; border-color: rgba(0,0,0,.12);
+        padding: 6px 9px; font-size: .85rem; line-height: 1;
+      }
+      .adm-btn--move:hover { background: rgba(0,0,0,.13); }
+      .adm-btn--move:disabled { opacity: .3; cursor: default; }
+
+      /* ── Champs éditables ── */
+      .editable { cursor: text; border-radius: 4px; transition: outline .12s; }
+      .editable:hover { outline: 2px dashed rgba(251,239,67,.7); outline-offset: 2px; }
+      .editable.is-editing { outline: 2px solid #fbef43 !important; outline-offset: 2px; }
+      .editable input, .editable textarea {
+        width: 100%; background: #fffef0; border: none; border-radius: 4px;
+        padding: 3px 6px; font-family: inherit; font-size: inherit;
+        font-weight: inherit; color: inherit; line-height: inherit;
+        outline: none; resize: vertical;
+      }
+      .editable input[type="date"] { font-size: .88rem; }
+      .admin-placeholder { opacity: .45; border: 2px dashed rgba(0,0,0,.2) !important; }
     `;
     document.head.appendChild(s);
   }
@@ -186,6 +238,102 @@ const AdminCore = (() => {
     }
   }
 
+  /* ── Édition inline générique ─────────────────────────────── */
+
+  function rendreEditable(el, config) {
+    if (el.querySelector('input, textarea')) return;
+    const origHTML = el.innerHTML;
+    let inputEl;
+
+    if (config.type === 'textarea') {
+      inputEl = document.createElement('textarea');
+      inputEl.rows = config.rows || 4;
+    } else {
+      inputEl = document.createElement('input');
+      inputEl.type = config.type === 'date' ? 'date' : 'text';
+    }
+
+    inputEl.value = config.getValue(el);
+    if (config.placeholder) inputEl.placeholder = config.placeholder;
+    if (config.className)   inputEl.className   = config.className;
+
+    el.innerHTML = '';
+    el.classList.add('is-editing');
+    el.appendChild(inputEl);
+    inputEl.focus();
+    if (inputEl.select) inputEl.select();
+
+    if (config.onInput) {
+      inputEl.addEventListener('input', () => config.onInput(inputEl.value));
+    }
+    inputEl.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { el.innerHTML = origHTML; el.classList.remove('is-editing'); }
+      if (e.key === 'Enter' && config.type !== 'textarea') inputEl.blur();
+    });
+    inputEl.addEventListener('blur', () => {
+      el.classList.remove('is-editing');
+      config.setValue(el, inputEl.value);
+    });
+  }
+
+  function activerEditables(conteneurEl, mapConfig) {
+    conteneurEl.querySelectorAll('[data-field]').forEach(el => {
+      const config = mapConfig[el.dataset.field];
+      if (!config) return;
+      el.classList.add('editable');
+      el.addEventListener('click', e => {
+        e.stopPropagation();
+        rendreEditable(el, config);
+      });
+    });
+  }
+
+  /* ── Messages d'état ───────────────────────────────────────── */
+
+  function afficherMsg(el, message, type, duree = 3000) {
+    if (!el) return;
+    el.textContent = message;
+    el.className   = `save-msg save-msg--${type}`;
+    setTimeout(() => { el.className = 'save-msg'; el.textContent = ''; }, duree);
+  }
+
+  /* ── Drag & drop générique ─────────────────────────────────── */
+
+  function initDragDrop(container, options) {
+    const { selector, dragOverClass = 'drag-over', onDrop } = options;
+    let dragSrc = null;
+
+    container.querySelectorAll(selector).forEach(el => {
+      el.addEventListener('dragstart', e => {
+        dragSrc = el;
+        e.dataTransfer.effectAllowed = 'move';
+        setTimeout(() => el.classList.add(dragOverClass), 0);
+      });
+      el.addEventListener('dragend', () => {
+        dragSrc = null;
+        container.querySelectorAll(selector).forEach(p => p.classList.remove(dragOverClass));
+      });
+      el.addEventListener('dragover', e => { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; });
+      el.addEventListener('dragenter', () => { if (dragSrc !== el) el.classList.add(dragOverClass); });
+      el.addEventListener('dragleave', () => el.classList.remove(dragOverClass));
+      el.addEventListener('drop', e => {
+        e.preventDefault();
+        if (!dragSrc || dragSrc === el) return;
+        el.classList.remove(dragOverClass);
+        const all  = Array.from(container.querySelectorAll(selector));
+        const iSrc = all.indexOf(dragSrc);
+        const iDst = all.indexOf(el);
+        if (iSrc < iDst) container.insertBefore(dragSrc, el.nextSibling);
+        else             container.insertBefore(dragSrc, el);
+        if (onDrop) {
+          const newOrder = Array.from(container.querySelectorAll(selector))
+            .map(e => Number(e.dataset.photoId || e.dataset.id));
+          onDrop(newOrder);
+        }
+      });
+    });
+  }
+
   /* ── Init ─────────────────────────────────────────────────── */
 
   async function init(config) {
@@ -214,6 +362,10 @@ const AdminCore = (() => {
     toggleModeVisiteur,
     seDeconnecter,
     gererFooterLink,
+    rendreEditable,
+    activerEditables,
+    afficherMsg,
+    initDragDrop,
     get modeVisiteur() { return modeVisiteur; },
     utils: { esc, escBr, formatDate },
   };
