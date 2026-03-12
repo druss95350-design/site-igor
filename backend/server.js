@@ -29,6 +29,7 @@ const { initialiserDB }              = require('./database');
 const { routerProjets, routerPhotos } = require('./routes/projets');
 const routesAuth                     = require('./routes/auth');
 const routerApropos                  = require('./routes/apropos');
+const routerAccueil                  = require('./routes/accueil');
 
 // Charger la config Passport (stratégie Google)
 require('./passport-config');
@@ -83,6 +84,7 @@ app.use('/api/auth',    routesAuth);
 app.use('/api/projets', routerProjets);
 app.use('/api/photos',  routerPhotos);
 app.use('/api',         routerApropos);
+app.use('/api',         routerAccueil);
 
 // ── Démarrage ────────────────────────────────────────────────
 initialiserDB();

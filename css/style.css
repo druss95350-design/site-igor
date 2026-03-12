@@ -465,64 +465,94 @@ p:last-child { margin-bottom: 0; }
 /* 10. Cartes de services */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
 }
 .service-card {
   background: var(--white);
-  border-radius: var(--radius);
+  border-radius: 12px;
+  border: 0.5px solid var(--border);
   overflow: hidden;
-  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
   transition: transform var(--ease), box-shadow var(--ease);
 }
 .service-card:hover {
-  transform: translateY(-7px);
+  transform: translateY(-5px);
   box-shadow: var(--shadow-hover);
 }
 .service-card__image {
-  height: 210px;
+  height: 180px;
+  position: relative;
   overflow: hidden;
+  flex-shrink: 0;
 }
 .service-card__image img {
   width: 100%; height: 100%;
   object-fit: cover;
   transition: transform 0.45s ease;
+  display: block;
 }
 .service-card:hover .service-card__image img { transform: scale(1.06); }
-.service-card {
+.service-card__image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.72));
   display: flex;
-  flex-direction: column;
+  align-items: flex-end;
+}
+.service-card__image-overlay h3 {
+  color: #fff;
+  font-size: 1.05rem;
+  line-height: 1.3;
+  margin: 0;
+  padding: 16px;
 }
 .service-card__body {
-  padding: 26px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   flex: 1;
 }
-.service-card__body h3 { margin-bottom: 10px; }
-.service-card__body p { color: var(--text-muted); font-size: 0.93rem; }
+.service-card__body p { color: var(--text-muted); font-size: 0.88rem; margin-bottom: 0; }
 .service-card__cta {
   margin-top: auto;
-  padding-top: 20px;
+  padding-top: 18px;
+}
+.service-card__cta .btn {
+  background: #fbef43;
+  border-color: #fbef43;
+  color: #1a1a1a;
+  border-radius: 8px;
+  font-weight: 700;
+  width: 100%;
+  justify-content: center;
+}
+.service-card__cta .btn:hover {
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
 }
 .service-card__list {
-  margin-top: 14px;
+  margin-top: 12px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
 }
 .service-card__list li {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
 }
 .service-card__list li::before {
   content: '✓';
-  color: var(--accent);
+  color: #fbef43;
   font-weight: 700;
   flex-shrink: 0;
+}
+@media (max-width: 768px) {
+  .services-grid { grid-template-columns: 1fr; }
 }
 
 /* 11. Aperçu "Qui suis-je" */
@@ -732,6 +762,7 @@ p:last-child { margin-bottom: 0; }
 .post-photos {
   display: grid;
   gap: 3px;
+  margin: 0 24px;
 }
 .post-photos .project-photo {
   aspect-ratio: unset;
@@ -789,8 +820,9 @@ body:not(.admin-actif) .post-photos--many .project-photo:nth-child(n+5) { displa
 .post-card__footer {
   padding: 16px 24px 20px;
   background: var(--bg-light);
+  display: flex;
+  justify-content: center;
 }
-
 @media (max-width: 600px) {
   .post-photos--2,
   .post-photos--3,
@@ -799,6 +831,15 @@ body:not(.admin-actif) .post-photos--many .project-photo:nth-child(n+5) { displa
   .post-card__header,
   .post-card__body,
   .post-card__footer { padding-left: 16px; padding-right: 16px; }
+  .post-photos { margin: 0 16px; }
+  .post-card__footer .btn {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    justify-content: center;
+    white-space: normal;
+    word-break: break-word;
+  }
 }
 
 /* 13. À propos — page complète */

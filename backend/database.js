@@ -144,6 +144,30 @@ function initialiserDB() {
     console.log('✅ Valeurs à propos initialisées');
   }
 
+  // ── Table accueil ────────────────────────────────────────────────────────
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS accueil (
+      id                 INTEGER PRIMARY KEY,
+      hero_titre         TEXT,
+      hero_tagline       TEXT,
+      whois_photo        TEXT,
+      whois_contenu_html TEXT
+    );
+  `);
+
+  if (db.prepare('SELECT COUNT(*) AS n FROM accueil').get().n === 0) {
+    db.prepare(`
+      INSERT INTO accueil (id, hero_titre, hero_tagline, whois_photo, whois_contenu_html)
+      VALUES (1, ?, ?, ?, ?)
+    `).run(
+      'Nettoyage vapeur\nEntretien climatisation\net travaux en hauteur',
+      'Façades, toitures, climatisation, accès difficiles...\nJe me déplace sur toute la Corse pour un résultat impeccable et durable.',
+      'assets/moi.jpg',
+      '<p>Je m\'appelle Igor, et je suis artisan indépendant en Corse depuis plus de quinze ans. Né ici, j\'ai grandi en regardant les bâtiments de notre île se salir, se dégrader, et souvent rester sans solution faute d\'artisans spécialisés et disponibles.</p><p>Aujourd\'hui, je mets mon expertise au service des particuliers et des professionnels du sud au nord de l\'île. Je travaille seul, sans sous-traitance, parce que je tiens à réaliser chaque prestation moi-même, avec la rigueur et le soin que vous méritez.</p><blockquote>"Mon travail, c\'est votre satisfaction. Pas plus, pas moins. Je me déplace, j\'évalue, et je vous dis franchement ce que je peux faire pour vous."</blockquote>'
+    );
+    console.log('✅ Données accueil initialisées');
+  }
+
   // ── Migration : ajouter contenu_html à apropos_presentation ──
   try {
     db.exec('ALTER TABLE apropos_presentation ADD COLUMN contenu_html TEXT');

@@ -6,6 +6,7 @@
   <title>Corse Pro Services — Nettoyage vapeur & travaux en hauteur en Corse</title>
   <meta name="description" content="Artisan indépendant en Corse. Nettoyage à la vapeur (façades, toitures, allées), entretien de climatisation et travaux acrobatiques en hauteur. Basé à Ajaccio.">
   <link rel="stylesheet" href="css/style.css">
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 </head>
 <body>
 
@@ -41,8 +42,8 @@
 
       <div class="container">
         <div class="hero__content">
-          <h1>Nettoyage vapeur<br>Entretien climatisation<br>et travaux en hauteur</h1>
-          <p class="hero__tagline">
+          <h1 data-field="hero_titre">Nettoyage vapeur<br>Entretien climatisation<br>et travaux en hauteur</h1>
+          <p class="hero__tagline" data-field="hero_tagline">
             Façades, toitures, climatisation, accès difficiles...<br>
             Je me déplace sur toute la Corse pour un résultat impeccable et durable.
           </p>
@@ -98,9 +99,11 @@
             <div class="service-card__image">
               <img src="assets/images/travaux/nettoyage-vapeur.jpg"
                    alt="Homme en train de nettoyer une toiture à la vapeur" loading="lazy">
+              <div class="service-card__image-overlay">
+                <h3>Nettoyage à la vapeur</h3>
+              </div>
             </div>
             <div class="service-card__body">
-              <h3>Nettoyage à la vapeur</h3>
               <p>Un nettoyage puissant et écologique, sans produits chimiques agressifs, adapté à toutes les surfaces extérieures.</p>
               <ul class="service-card__list">
                 <li>Façades et murs</li>
@@ -119,9 +122,11 @@
             <div class="service-card__image">
               <img src="assets/images/travaux/climatisation.jpg"
                    alt="Technicien entretenant une climatisation à la vapeur" loading="lazy">
+              <div class="service-card__image-overlay">
+                <h3>Entretien de climatisation</h3>
+              </div>
             </div>
             <div class="service-card__body">
-              <h3>Entretien de climatisation</h3>
               <p>Un entretien rigoureux à la vapeur pour des unités intérieures et extérieures propres, performantes et saines.</p>
               <ul class="service-card__list">
                 <li>Nettoyage des unités intérieures</li>
@@ -140,9 +145,11 @@
             <div class="service-card__image">
               <img src="assets/images/travaux/travaux-hauteur.jpg"
                    alt="Technicien en accès acrobatique sur un bâtiment en hauteur" loading="lazy">
+              <div class="service-card__image-overlay">
+                <h3>Travaux acrobatiques en hauteur</h3>
+              </div>
             </div>
             <div class="service-card__body">
-              <h3>Travaux acrobatiques en hauteur</h3>
               <p>Formations spécialisées et matériel certifié pour atteindre les zones inaccessibles aux échafaudages classiques.</p>
               <ul class="service-card__list">
                 <li>Accès difficiles et zones isolées</li>
@@ -167,7 +174,7 @@
       <div class="container">
         <div class="about-preview__inner">
           <div class="about-preview__image">
-            <img src="assets/moi.jpg"
+            <img id="whois-photo" src="assets/moi.jpg"
                  alt="Igor, artisan Corse Pro Services" loading="lazy">
             <div class="about-preview__badge">
               <div class="about-preview__badge-num">15+</div>
@@ -176,20 +183,31 @@
           </div>
           <div class="about-preview__content">
             <h2>Qui suis-je ?</h2>
-            <p>
-              Je m'appelle Igor, et je suis artisan indépendant en Corse depuis plus de quinze ans.
-              Né ici, j'ai grandi en regardant les bâtiments de notre île se salir, se dégrader,
-              et souvent rester sans solution faute d'artisans spécialisés et disponibles.
-            </p>
-            <p>
-              Aujourd'hui, je mets mon expertise au service des particuliers et des professionnels
-              du sud au nord de l'île. Je travaille seul, sans sous-traitance, parce que je tiens à
-              réaliser chaque prestation moi-même, avec la rigueur et le soin que vous méritez.
-            </p>
-            <blockquote class="about-preview__quote">
-              "Mon travail, c'est votre satisfaction. Pas plus, pas moins. Je me déplace, j'évalue,
-              et je vous dis franchement ce que je peux faire pour vous."
-            </blockquote>
+            <div id="whois-contenu">
+              <p>
+                Je m'appelle Igor, et je suis artisan indépendant en Corse depuis plus de quinze ans.
+                Né ici, j'ai grandi en regardant les bâtiments de notre île se salir, se dégrader,
+                et souvent rester sans solution faute d'artisans spécialisés et disponibles.
+              </p>
+              <p>
+                Aujourd'hui, je mets mon expertise au service des particuliers et des professionnels
+                du sud au nord de l'île. Je travaille seul, sans sous-traitance, parce que je tiens à
+                réaliser chaque prestation moi-même, avec la rigueur et le soin que vous méritez.
+              </p>
+              <blockquote class="about-preview__quote">
+                "Mon travail, c'est votre satisfaction. Pas plus, pas moins. Je me déplace, j'évalue,
+                et je vous dis franchement ce que je peux faire pour vous."
+              </blockquote>
+            </div>
+            <div id="whois-quill-wrap" style="display:none">
+              <div id="whois-quill-editor"></div>
+              <div id="whois-save-wrap" style="display:none">
+                <button id="btn-save-whois" class="btn btn--accent" style="display:none">
+                  Enregistrer
+                </button>
+                <span id="whois-save-msg" class="save-msg"></span>
+              </div>
+            </div>
             <a href="apropos.html" class="btn btn--outline">En savoir plus sur mon parcours</a>
           </div>
         </div>
@@ -428,5 +446,8 @@
   </aside>
 
   <script src="js/script.js"></script>
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  <script src="js/admin-core.js"></script>
+  <script src="js/admin-accueil.js"></script>
 </body>
 </html>

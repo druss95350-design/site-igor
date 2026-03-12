@@ -32,7 +32,6 @@ router.get('/google/callback',
     session: true,
   }),
   (req, res) => {
-    // Authentification réussie → page réalisations (qui détecte la session)
     res.redirect('/realisations.html');
   }
 );

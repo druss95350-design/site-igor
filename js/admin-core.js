@@ -233,7 +233,7 @@ const AdminCore = (() => {
     if (!connecte) {
       const li = document.createElement('div');
       li.className = 'footer__contact-item footer-admin-link';
-      li.innerHTML = `<span class="ico">🔐</span><span><a href="/admin/login">Administration</a></span>`;
+      li.innerHTML = `<span class="ico">🔐</span><span><a href="/admin/login" onclick="try{sessionStorage.setItem('adminRetour',window.location.pathname+window.location.search)}catch(e){}">Administration</a></span>`;
       footerContact.appendChild(li);
     }
   }
@@ -346,6 +346,14 @@ const AdminCore = (() => {
     gererFooterLink(status.connecte);
 
     if (status.connecte) {
+      // Redirection post-login si une page d'origine a été mémorisée
+      const retour = sessionStorage.getItem('adminRetour');
+      if (retour && retour !== window.location.pathname) {
+        sessionStorage.removeItem('adminRetour');
+        window.location.href = retour;
+        return;
+      }
+      sessionStorage.removeItem('adminRetour');
       injecterBarreAdmin(status.email, _config.boutonsCentre || '');
       await _config.onConnecte?.(status.email);
     } else {

@@ -138,7 +138,6 @@
   </div>
 
   <script>
-    // Afficher le message d'erreur si présent dans l'URL
     const params = new URLSearchParams(window.location.search);
     if (params.get('erreur') === 'non_autorise') {
       document.getElementById('errorBanner').classList.add('visible');
